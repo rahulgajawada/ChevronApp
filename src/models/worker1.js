@@ -33,11 +33,12 @@ const workerSchema = new mongoose.Schema({
     available:{
         type:Boolean,
         // required:true
-    },
-    queue:{
-        type: [workOrderSchema],
-        default: []
     }
+    // ,
+    // queue:{
+    //     type: [workOrderSchema],
+    //     default: []
+    // }
     
 },{timestamps: true})
 const Worker = new mongoose.model('Worker1', workerSchema)
