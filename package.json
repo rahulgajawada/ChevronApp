@@ -14,7 +14,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-simple-timefield": "^3.2.3"
+    "react-simple-timefield": "^3.2.3",
+    "proxy":"http://localhost:4000"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,6 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "nodemon src/index1.js"
+    
   },
   "eslintConfig": {
     "extends": "react-app"

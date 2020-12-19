@@ -10,7 +10,7 @@ import { Route } from 'react-router-dom';
 export default function App() {
 
   return (
-    <div classNeame="App">
+    <div className="App">
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/workorder" component={WorkOrder} />
