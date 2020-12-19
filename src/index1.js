@@ -10,11 +10,20 @@ const facilityRouter = require('./routers/facility')
 const workerRouter = require('./routers/worker')
 const workOrderRouter = require('./routers/workOrder')
 
+// const { createProxyMiddleware } = require('http-proxy-middleware');
+
 app.use(express.json())
 app.use(equipmentRouter)
 app.use(facilityRouter)
 app.use(workerRouter)
 app.use(workOrderRouter)
+
+var cors = require('cors');
+app.use(cors());
+// 
+ 
+// app.use('/api', createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true }));
+
 
 app.get('/upload', (req,res) => {
     res.send("hi")

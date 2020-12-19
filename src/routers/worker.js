@@ -2,9 +2,13 @@ const express = require('express')
 const router = new express.Router()
 const Worker = require('../models/worker1')
 
+var cors = require('cors');
+router.use(cors())
+
+
 // Create a worker
 router.post('/api/workers', async (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000');
+    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000');
     const worker = new Worker(req.body)
     try{
         await worker.save()
@@ -17,14 +21,14 @@ router.post('/api/workers', async (req,res) => {
 
 //Retrieving workers
 router.get('/api/workers', async (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000');
+    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000');
     const workers = await Worker.find({})
     res.send(workers)
 })
 
 //Retrieving worker
 router.get('/api/worker/:id', async (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
     const workers = await Worker.find({_id: req.params.id})
     res.send(workers)
 })
