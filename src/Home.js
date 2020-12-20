@@ -40,7 +40,7 @@ export default function Home() {
                     variant="contained"
                     color="primary"
                 > 
-                        Worker Registeration
+                       Rescue Worker Registeration
                     
                 </Button>
                 <Button
@@ -51,7 +51,7 @@ export default function Home() {
                     variant="contained"
                     color="primary"
                 >
-                    Work Order
+                    Rescue Order
                 </Button>
 
                 <Button
@@ -62,7 +62,7 @@ export default function Home() {
                     variant="contained"
                     color="primary"
                 >
-                    Status Update
+                    Rescue Status Update
           </Button>
             </div>
             <Box mt={8}>

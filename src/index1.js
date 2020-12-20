@@ -21,7 +21,7 @@ app.use(workOrderRouter)
 app.use(properRouter)
 
 var cors = require('cors');
-app.use(cors());
+//app.use(cors());
 // 
  
 // app.use('/api', createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true }));

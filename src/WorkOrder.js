@@ -54,7 +54,7 @@ export default function WorkOrder() {
                         required
                         fullWidth
                         id="facility"
-                        label="Facility"
+                        label="Location"
                         name="facility"
                         autoFocus
                         form className={classes.form}
@@ -66,7 +66,7 @@ export default function WorkOrder() {
                         required
                         fullWidth
                         name="equipmentType"
-                        label="Equipment Type"
+                        label="Rescue Type"
                         id="equipmentType"
                         form className={classes.form}
                         onChange={e => setType(e.target.value)}
@@ -77,7 +77,7 @@ export default function WorkOrder() {
                         required
                         fullWidth
                         name="equipmentID"
-                        label="Equipment ID"
+                        label="Disaster Type"
                         id="equipmentID"
                         form className={classes.form}
                         onChange={e => setID(e.target.value)}
@@ -100,7 +100,7 @@ export default function WorkOrder() {
                         required
                         fullWidth
                         name="time"
-                        label="Time to Complete"
+                        label="Rescue Instructions"
                         id="time"
                         form className={classes.form}
                         onChange={e => setTime(e.target.value)}
