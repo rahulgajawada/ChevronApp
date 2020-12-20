@@ -24,7 +24,7 @@ const assignedTask = async (order) => {
         let currentTime = date_ob.getHours();
         if(currentTime > 12){
             for(let i = 0; i < morn.length; i++){
-                let t = avgTime(morn[i],pop.facility)
+                let t = avgTime(morn[i],pop)
                 if(t < minTime){
                      minTime = t
                      minIndex = i
@@ -37,7 +37,7 @@ const assignedTask = async (order) => {
         }
         else{
             for(let i = 0; i < even.length; i++){
-                let t = avgTime(even[i],pop.facility)
+                let t = avgTime(even[i],pop)
                 if(t < minTime){
                      minTime = t
                      minIndex = i
@@ -58,10 +58,10 @@ const assignedTask = async (order) => {
 
 const degreesToRadians = (degrees) => degrees * Math.PI / 180
 
-const avgTime = async (worker, target_facility) => {
-    let lat1 = await target_facility.latitude;
+const avgTime = async (worker, order) => {
+    let lat1 = await order.latitude;
     let lat2 = await worker.latitude;
-    let lng1 = await target_facility.longitude;
+    let lng1 = order.longitude;
     let lng2 = await worker.longitude;
       // The radius of the planet earth in kilometers
     let radiusEarth = 6378.137;

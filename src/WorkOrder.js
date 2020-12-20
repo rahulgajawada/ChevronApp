@@ -38,9 +38,9 @@ export default function WorkOrder() {
     function validateForm() {
         return facility.length > 0 && equipmentType.length > 0 && equipmentID.length > 0 && priority.length > 0 && time.length;
     }
-    
-    //submits data to the backend
-    function handleSubmit(event) {
+
+     //submits data to the backend
+     function handleSubmit(event) {
         event.preventDefault();
         const data = fetch('http://localhost:4000/api/workOrder',{
             method: 'POST',
@@ -48,17 +48,13 @@ export default function WorkOrder() {
                 'Content-type':'application/json'
             },
             body: JSON.stringify({ location: facility, rescueType: equipmentType, disasterType: equipmentID, priority: priority, rescueInstructions: time })
-        }).then(res => res.json()).then(data => data).catch(error => console.log("ERROR"))
-        const f = async (data) => {
-            const order = await data;
+        }).then(order => {
             const _id = order._id;
             const url = 'http://localhost:4000/api/assignOrder/' + _id
-            fetch(url).then(response => response.json()).then(data => console.log(data))
+            fetch(url).then(response => response.json()).then(data => console.log(data)).catch(error => console.log("ERROR"))
             const worker = Worker.findByID({order: _id})
             sendSMS(order["rescueInstructions"], worker["phone"])
-
-        }
-        f(data)
+        }).catch(error => console.log("ERROR"))
         // axios.post("localhost:4000/api/workOrder", { facility: facility, equipment: equipmentType, equipmentID: equipmentID, priority: priority, timeToComplete: time });
     }
 
