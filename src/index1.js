@@ -26,6 +26,11 @@ var cors = require('cors');
  
 // app.use('/api', createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true }));
 
+// app.use(async (req, res, next) => {
+//     await next();
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//   });
+
 
 app.get('/upload', (req,res) => {
     res.send("hi")

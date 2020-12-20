@@ -7,17 +7,17 @@ router.use(cors())
 
 
 // Create a worker
-router.post('/api/workers', async (req,res) => {
-    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000');
-    const worker = new Worker(req.body)
-    try{
-        await worker.save()
-        res.status(201).send({worker})
-    }
-    catch(e){
-        res.status(500).send()
-    }
-})
+// router.post('/api/workers', async (req,res) => {
+//     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000');
+//     const worker = new Worker(req.body)
+//     try{
+//         await worker.save()
+//         res.status(201).send({worker})
+//     }
+//     catch(e){
+//         res.status(500).send()
+//     }
+// })
 
 //Retrieving workers
 router.get('/api/workers', async (req,res) => {

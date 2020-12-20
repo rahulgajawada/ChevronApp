@@ -21,6 +21,7 @@ router.post('/api/workOrder', async (req,res) => {
 // Create a worker
 router.post('/api/workers', async (req,res) => {
     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     const worker = new Worker(req.body)
     try{
         await worker.save()

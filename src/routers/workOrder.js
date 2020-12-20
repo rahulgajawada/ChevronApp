@@ -4,16 +4,16 @@ const WorkOrder = require('../models/workOrder1')
 const findValidWorkers = require('../utils/algos')
 
 // Create a worker
-router.post('/api/workOrder', async (req,res) => {
-    const order = new WorkOrder(req.body)
-    try{
-        await order.save()
-        res.status(201).send({order})
-    }
-    catch(e){
-        res.status(500).send()
-    }
-})
+// router.post('/api/workOrder', async (req,res) => {
+//     const order = new WorkOrder(req.body)
+//     try{
+//         await order.save()
+//         res.status(201).send({order})
+//     }
+//     catch(e){
+//         res.status(500).send()
+//     }
+// })
 
 //Retrieving orders
 router.get('/api/workOrder', async (req,res) => {

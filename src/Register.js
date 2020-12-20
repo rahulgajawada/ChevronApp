@@ -41,8 +41,16 @@ export default function App() {
     //submits data to the backend
     function handleSubmit(event) {
         event.preventDefault();
-        axios.post('localhost:4000/api/workers', { email: email, name: name, latitude: latitude, longitude: longitude, phone: phone, equipment: equipment, shifts: shifts }).then(res => console.log(res.data));
-
+        // axios.post('localhost:4000/api/workers', { email: email, name: name, latitude: latitude, longitude: longitude, phone: phone, equipment: equipment, shifts: shifts }).then(res => console.log(res.data));
+        fetch('http://localhost:4000/api/workers',{
+            method: 'POST',
+            headers: {
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify({
+                email: email, name: name, latitude: latitude, longitude: longitude, phone: phone, equipment: equipment, shifts: shifts 
+            })
+        }).then(res => res.json()).then(data => console.log(data)).catch(error => console.log("ERROR"))
     }
 
 
