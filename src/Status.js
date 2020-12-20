@@ -31,7 +31,7 @@ export default function App() {
 
     //checks if they put in an email and password
     function validateForm() {
-        return workerID.length > 0;
+        return name.length > 0 && phone.length > 0;
     }
 
     function handleSubmit(event) {
@@ -87,7 +87,7 @@ export default function App() {
                         color="primary"
                         disabled={!validateForm()}
                     >
-                       
+                       Send
           </Button>
                 </form>
             </div>
