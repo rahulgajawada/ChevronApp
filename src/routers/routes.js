@@ -7,6 +7,7 @@ const {assignedTask, findValidWorkers} = require('../utils/algos')
 
 // Create a WorkOrder
 router.post('/api/workOrder', async (req,res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     const order = new WorkOrder(req.body)
     try{
         await order.save()

@@ -1,51 +1,32 @@
 const mongoose = require('mongoose')
 
 const workOrderSchema = new mongoose.Schema({
-    facility:{
+    location:{
         type:String,
-        // required:true,
-        // trim:true
     },
-    equipment:{
+    rescueType:{
         type:String,
-        // required:true,
-        // trim:true
     },
-    equipmentID:{
+    disasterType:{
         type:String,
-        // required: true
     },
     priority:{
         type: Number
     },
-    timeToComplete:{
-        type: Number,
-        // required: true
+    rescueInstructions:{
+        type: String,
     }
 },{
     timestamps: true
 })
 
-  // ,
-    // password:{
-    //     type: String,
-    //     required: true,
-    //     trim: true,
-    //     minlength: 7
-    // }
-    // tokens:{
-    //     token:{
-    //         type:String,
-    //         required:true
-    //     }
-    // }
 
-// userSchema.virtual('posts', {
-//     ref: 'Post',
-//     localField: '_id',
-//     foreignField: 'CreatedBy'
+workOrderSchema.virtual('worker', {
+    ref: 'Worker',
+    localField: '_id',
+    foreignField: 'order'
 
-// })
+})
 
 const WorkOrder = mongoose.model('WorkOrder', workOrderSchema)
 

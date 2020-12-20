@@ -5,36 +5,15 @@ const app = express()
 const port = process.env.port || 4000
 const publicDirectoryPath = path.join(__dirname, '../public')
 app.use(express.static(publicDirectoryPath))
-const equipmentRouter = require('./routers/equipment')
-const facilityRouter = require('./routers/facility')
 const workerRouter = require('./routers/worker')
 const workOrderRouter = require('./routers/workOrder')
 const properRouter =  require('./routers/routes')
 
-// const { createProxyMiddleware } = require('http-proxy-middleware');
 
 app.use(express.json())
-// app.use(equipmentRouter)
-// app.use(facilityRouter)
 app.use(workerRouter)
 app.use(workOrderRouter)
 app.use(properRouter)
-
-var cors = require('cors');
-//app.use(cors());
-// 
- 
-// app.use('/api', createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true }));
-
-// app.use(async (req, res, next) => {
-//     await next();
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//   });
-
-
-app.get('/upload', (req,res) => {
-    res.send("hi")
-})
 
 
 app.listen(port, () => {
