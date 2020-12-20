@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, TextField, Box, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from 'axios';
+const Worker = require('../models/worker1')
+const sendSMS = require('./twilio/send_sms')
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -50,7 +52,9 @@ export default function WorkOrder() {
             const _id = order_id;
             const url = 'http://localhost:4000/api/assignOrder/' + _id
             fetch(url).then(response => response.json()).then(data => console.log(data))
-            
+            const worker = Worker.findByID({order: _id})
+            sendSMS(order["rescueInstructions"], worker["phone"])
+
         }
         f(data)
         // axios.post("localhost:4000/api/workOrder", { facility: facility, equipment: equipmentType, equipmentID: equipmentID, priority: priority, timeToComplete: time });

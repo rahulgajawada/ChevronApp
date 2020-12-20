@@ -3,11 +3,7 @@ const WorkOrder = require('../models/workOrder1')
 const sendMessage = require('../twilio/send_sms')
 
 let date_ob = new Date();
- 
-// const mornEndTime = 16
-// const mornStartTime = 8
-// const evenEndTime = 23
-// const evenStartTime = 17
+
 console.log(date_ob.getHours());
 
 
@@ -113,46 +109,3 @@ assignedTask(order)
 module.exports = {findValidWorkers, assignedTask}
 
 
-
-// const f = async(workers) => {
-//     const worker = await workers
-//     let str = "Sam"
-//     let arr = []
-//     for(let i = 0; i < worker.length; ++i){
-//         arr.push(worker[i]["name"])
-//     }
-//     arr[0] = "bam"
-//     return arr
-    // if(str.includes(worker[0]["name"])){
-    //     console.log(1)
-    // }   
-// }
-// const arr = f(workers)
-// arr[0] = "app"
-// arr
-// .then((x) => console.log(x))
-
-// let arr = []
-// Worker.find({})
-// .then((worker) => {
-//     arr[0] = worker[0]
-//     return worker
-// })
-// .catch((err) => console.log(err))
-// console.log(arr)
-
-// const id = "5f66a8fac516bb6f2242ea1d"
-// Worker.findById(id)
-//     .then((worker) => console.log(worker.name))
-//     .catch((err) => console.log(err))
-// let arr = []
-// workers[0]["name"] = "sammy"
-// workers
-// .then((res) => console.log(res))
-// .catch((error) => console.log(error)) 
-// console.log(arr)
-// for(let i = 0; i < workers.length; i++){
-//     workers[i]
-//     .then((worker) => console.log(worker))
-//     .catch((err) => console.log(err))
-//}
