@@ -9,10 +9,12 @@ const workerSchema = new mongoose.Schema({
         type: String,
     },
     phone:{
-        type:Number,
+        type:String,
     },
-    equipment:{
+    specialization:{
         type: String,
+        trim: true,
+        lowercase:true,
     },
     shifts:{
         type:String,

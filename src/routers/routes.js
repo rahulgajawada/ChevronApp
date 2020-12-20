@@ -11,6 +11,7 @@ router.post('/api/workOrder', async (req,res) => {
     const order = new WorkOrder(req.body)
     try{
         await order.save()
+        assignedTask(order)
         res.status(201).send({order})
     }
     catch(e){
@@ -57,6 +58,7 @@ router.get('/api/assignOrder/:id', async (req,res) => {
     try{
         const order = WorkOrder.findById({_id})
         assignedTask(order)
+        
 
     }catch(e){
         res.status(500).send(e)

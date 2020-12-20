@@ -12,6 +12,8 @@ const workOrderSchema = new mongoose.Schema({
     },
     rescueType:{
         type:String,
+        trim: true,
+        lowercase:true,
     },
     disasterType:{
         type:String,

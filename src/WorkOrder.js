@@ -3,6 +3,7 @@ import { Button, TextField, Box, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from 'axios';
 const Worker = require('./models/worker1')
+const WorkOrder1 = require('./models/workOrder1')
 const sendSMS = require('./twilio/send_sms')
 
 const useStyles = makeStyles(theme => ({
@@ -42,19 +43,25 @@ export default function WorkOrder() {
      //submits data to the backend
      function handleSubmit(event) {
         event.preventDefault();
-        const data = fetch('http://localhost:4000/api/workOrder',{
+         fetch('http://localhost:4000/api/workOrder',{
             method: 'POST',
             headers: {
                 'Content-type':'application/json'
             },
             body: JSON.stringify({ location: facility, rescueType: equipmentType, disasterType: equipmentID, priority: priority, rescueInstructions: time })
-        }).then(order => {
-            const _id = order._id;
-            const url = 'http://localhost:4000/api/assignOrder/' + _id
-            fetch(url).then(response => response.json()).then(data => console.log(data)).catch(error => console.log("ERROR"))
-            const worker = Worker.findByID({order: _id})
-            sendSMS(order["rescueInstructions"], worker["phone"])
-        }).catch(error => console.log("ERROR"))
+        }).then(x => console.log(x)).catch(error => console.log("ERROR1"))
+        
+        // const f = async () => {
+        
+        // const order =  await WorkOrder1.find({ location: facility, rescueType: equipmentType, disasterType: equipmentID, priority: priority, rescueInstructions: time })          
+        // console.log(order)
+            // const _id = order._id;
+            // const url = 'http://localhost:4000/api/assignOrder/' + _id
+            // fetch(url).then(response => response.json()).then(data => console.log(data)).catch(error => console.log("ERROR: not able to assign"))
+            // const worker = Worker.findByID({order: _id})
+            // sendSMS(order["rescueInstructions"], worker["phone"])
+        // }
+        // f()
         // axios.post("localhost:4000/api/workOrder", { facility: facility, equipment: equipmentType, equipmentID: equipmentID, priority: priority, timeToComplete: time });
     }
 

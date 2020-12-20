@@ -4,10 +4,10 @@ const sendMessage = require('../twilio/send_sms')
 
 let date_ob = new Date();
 
-// console.log(date_ob.getHours());
+console.log(date_ob.getHours());
 
 
-const assignedTask = async (order) => {
+const assignedTask = async(order) => {
     let q = []
     let Order = await order
     q.push(Order)
@@ -16,13 +16,14 @@ const assignedTask = async (order) => {
         for(let i = 0; i < priorityOrder.length; ++i)
             q.push(priorityOrder[i])
     }
+   
     while(q.length != 0){
         let pop = q.shift()
         const {morn, even} = await findValidWorkers(pop)
         let minTime = 1000000000000000000000;
         let minIndex = 0;
         let currentTime = date_ob.getHours();
-        if(currentTime > 12){
+        if(currentTime < 12){
             for(let i = 0; i < morn.length; i++){
                 let t = avgTime(morn[i],pop)
                 if(t < minTime){
@@ -33,6 +34,7 @@ const assignedTask = async (order) => {
              if(morn[minIndex] != null){
                 morn[minIndex]["order"] = pop._id
                 morn[minIndex].save()
+                // console.log(morn[minIndex])
              }
         }
         else{
@@ -46,6 +48,7 @@ const assignedTask = async (order) => {
              if(even[minIndex] != null){
                 even[minIndex]["order"] = pop._id
                 even[minIndex].save()
+                console.log(even[minIndex])
              }
             
         }
@@ -82,16 +85,17 @@ const findValidWorkers = async(workOrder) => {
     const order = await workOrder
     let validWorkers = await Worker.find({})
     validWorkers = validWorkers.filter((worker) => {
-        if(worker.equipment)
-            return worker.equipment.includes(order.equipment)
-        return false
+        return worker.specialization.includes(order.rescueType)
     })
+    
+    // console.log(validWorkers)
     validWorkers = validWorkers.reduce((acc, worker) => {
         if(worker.shifts === "morning"){
             acc["morn"].push(worker)
             return acc
         }
         else if(worker.shifts === "evening"){
+            // console.log(worker)
             acc["even"].push(worker)
             return acc
         }
@@ -101,10 +105,16 @@ const findValidWorkers = async(workOrder) => {
 }
 // findValidWorkers(order)
 // assignedTask(order)
+const f = async () => {
 
-// const order = WorkOrder.findById("5f6666865fb0bd66ef68fb2a")
-// assignedTask(order)
+  const order = await WorkOrder.findById("5fdf7618e74b143bcef1f922")
+  assignedTask(order)
+//   findValidWorkers(order).then(x => console.log(x))
+}
+f()
+// console.log(order)
 
+// WorkOrder.findById("5fdf7618e74b143bcef1f922").then(x => console.log(x))
 
 module.exports = {findValidWorkers, assignedTask}
 

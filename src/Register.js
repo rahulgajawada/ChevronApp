@@ -47,7 +47,7 @@ export default function App() {
                 'Content-type':'application/json'
             },
             body: JSON.stringify({
-                email: email, name: name, latitude: latitude, longitude: longitude, phone: phone, equipment: equipment, shifts: shifts 
+                email: email, name: name, latitude: latitude, longitude: longitude, phone: phone, specialization: equipment, shifts: shifts 
             })
         }).then(res => res.json()).then(data => console.log(data)).catch(error => console.log("ERROR"))
     }
@@ -101,7 +101,7 @@ export default function App() {
                         required
                         fullWidth
                         name="equipment"
-                        label="Equipment"
+                        label="Specialization"
                         id="equipment"
                         form className={classes.form}
                         onChange={e => setEquipment(e.target.value)}
