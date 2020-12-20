@@ -9,14 +9,16 @@ const equipmentRouter = require('./routers/equipment')
 const facilityRouter = require('./routers/facility')
 const workerRouter = require('./routers/worker')
 const workOrderRouter = require('./routers/workOrder')
+const properRouter =  require('./routers/routes')
 
 // const { createProxyMiddleware } = require('http-proxy-middleware');
 
 app.use(express.json())
-app.use(equipmentRouter)
-app.use(facilityRouter)
+// app.use(equipmentRouter)
+// app.use(facilityRouter)
 app.use(workerRouter)
 app.use(workOrderRouter)
+app.use(properRouter)
 
 var cors = require('cors');
 app.use(cors());

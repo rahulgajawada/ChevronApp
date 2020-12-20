@@ -3,12 +3,11 @@ const WorkOrder = require('../models/workOrder1')
 
 let date_ob = new Date();
  
-let orders = []
-const mornEndTime = 16
-const mornStartTime = 8
-const evenEndTime = 23
-const evenStartTime = 17
-
+// const mornEndTime = 16
+// const mornStartTime = 8
+// const evenEndTime = 23
+// const evenStartTime = 17
+console.log(date_ob.getHours());
 
 
 const assignedTask = async (order) => {
@@ -20,68 +19,71 @@ const assignedTask = async (order) => {
         for(let i = 0; i < priorityOrder.length; ++i)
             q.push(priorityOrder[i])
     }
-    // console.log(q)
-
-    // console.log(q)
     while(q.length != 0){
         let pop = q.shift()
         const {morn, even} = await findValidWorkers(pop)
-        let maxTime = 0;
-        let maxIndex = 0;
-        let currentTime = date_ob.getHours()
-        console.log(currentTime)
-         for(let i = 0; i < morn.length; i++){
-            //  currentTime = mornStartTime + 1
-             let t = mornEndTime - Math.max(currentTime,mornStartTime) - avgTime(morn[i],pop.facility)
-             if(t > maxTime){
-                maxTime = t
-                maxIndex = i
+        let minTime = 1000000000000000000000;
+        let minIndex = 0;
+        let currentTime = date_ob.getHours();
+        if(currentTime > 12){
+            for(let i = 0; i < morn.length; i++){
+                let t = avgTime(morn[i],pop.facility)
+                if(t < minTime){
+                     minTime = t
+                     minIndex = i
+                }
              }
-         }
-        //  console.log(maxIndex)
-        //  console.log(morn[maxIndex])
-        //  morn[maxIndex]["worker"].push(ptr)
-        break;
-
+             if(morn[minIndex] != null){
+                morn[minIndex]["order"] = pop._id
+                morn[minIndex].save()
+             }
+        }
+        else{
+            for(let i = 0; i < even.length; i++){
+                let t = avgTime(even[i],pop.facility)
+                if(t < minTime){
+                     minTime = t
+                     minIndex = i
+                }
+             }
+             if(even[minIndex] != null){
+                even[minIndex]["order"] = pop._id
+                even[minIndex].save()
+             }
+            
+        }
+        
     }
     // while(q.length != 0){
-    //     let ptr = q.pop()
-    //     let valid_morn = [];
-    //     let valid_eve = [];
-    //     for(let i = 0; i < workers.length; i++){
-    //         if(workers[i].equipment.includes(order.equipment)){
-    //             if(workers[i].shift.includes("morning")){
-    //                valid_morn.push(workers[i])
-    //             }
-    //             else{
-    //                 valid_eve.push(workers[i])
-    //             }
-    //         } 
-    //     }
+    //     let pop = q.shift()
+    //     const {morn, even} = await findValidWorkers(pop)
     //     let maxTime = 0;
-    //     let maxIndex = -1;
-    //      for(let i = 0; i < valid_morn.length; i++){
-    //          let t = mornEndTime - Math.max(currentTime,mornStartTime) - avgTime(valid_morn[i],ptr.facility)
+    //     let maxIndex = 0;
+    //     let currentTime = date_ob.getHours()
+    //     // console.log(currentTime)
+    //      for(let i = 0; i < morn.length; i++){
+    //         //  currentTime = mornStartTime + 1
+    //          let t = mornEndTime - Math.max(currentTime,mornStartTime) - avgTime(morn[i],pop.facility)
     //          if(t > maxTime){
     //             maxTime = t
     //             maxIndex = i
     //          }
     //      }
-    //      valid_morn[maxIndex]["worker"].push(ptr)
 
-    //     maxTime = 0;
-    //     maxIndex = -1;
-    //      for(let i = 0; i < valid_morn.length; i++){
-    //          let t = mornEndTime - Math.max(currentTime,mornStartTime) - avgTime(valid_morn[i],ptr.facility)
-    //          if(t > maxTime){
-    //             maxTime = t
-    //             maxIndex = i
-    //          }
+    //      for(let i = 0; i < even.length; i++){
+
     //      }
-    //      valid_morn[maxIndex]["worker"].push(ptr)
-
-    // }
+    //     //  console.log(pop._id)
+    //     //  console.log(maxIndex)
+    //      console.log(morn[maxIndex])
+    //      if(morn[maxIndex] != null){
+    //         morn[maxIndex]["queue"].push(pop._id)
+    //         morn[maxIndex].save();
+    //      }
+        // break;
     
+    // }
+  
 }
 
 
@@ -136,7 +138,7 @@ const order = WorkOrder.findById("5f6666865fb0bd66ef68fb2a")
 assignedTask(order)
 
 
-module.exports = findValidWorkers
+module.exports = {findValidWorkers, assignedTask}
 
 
 

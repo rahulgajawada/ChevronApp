@@ -34,29 +34,29 @@ router.get('/api/worker/:id', async (req,res) => {
 })
 
 //Update worker
-router.patch('/api/workers/:id',async (req,res) => {
-    const _id = req.params.id
-    const allowedUpdates = ["name","email","phone","equipment","shifts","latitude","longitude","available"]
-    const updates = Object.keys(req.body)
-    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+// router.patch('/api/workers/:id',async (req,res) => {
+//     const _id = req.params.id
+//     const allowedUpdates = ["name","email","phone","equipment","shifts","latitude","longitude","available"]
+//     const updates = Object.keys(req.body)
+//     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
-    if(!isValidOperation)
-        return res.status(400).send({error: "Invalid updates"})
-    try{
-        const worker = await Worker.findOne({_id, owner : req.user._id})
+//     if(!isValidOperation)
+//         return res.status(400).send({error: "Invalid updates"})
+//     try{
+//         const worker = await Worker.findOne({_id, owner : req.user._id})
         
-        if(!worker)
-            return res.status(404).send()
+//         if(!worker)
+//             return res.status(404).send()
 
-        updates.forEach((update) => {
-            worker[update] = req.body[update]
-        })
-        await worker.save()
-        res.send(worker)
-    }catch(e){
-        res.status(500).send(e)
-    }
-})
+//         updates.forEach((update) => {
+//             worker[update] = req.body[update]
+//         })
+//         await worker.save()
+//         res.send(worker)
+//     }catch(e){
+//         res.status(500).send(e)
+//     }
+// })
 
 //delete worker
 router.delete('/api/workers/:id', async (req,res) => {
