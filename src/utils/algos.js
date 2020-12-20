@@ -45,6 +45,7 @@ const assignedTask = async (order) => {
         break;
 
     }
+}
     // while(q.length != 0){
     //     let ptr = q.pop()
     //     let valid_morn = [];
@@ -59,31 +60,31 @@ const assignedTask = async (order) => {
     //             }
     //         } 
     //     }
-    //     let maxTime = 0;
-    //     let maxIndex = -1;
-    //      for(let i = 0; i < valid_morn.length; i++){
-    //          let t = mornEndTime - Math.max(currentTime,mornStartTime) - avgTime(valid_morn[i],ptr.facility)
-    //          if(t > maxTime){
-    //             maxTime = t
-    //             maxIndex = i
-    //          }
-    //      }
-    //      valid_morn[maxIndex]["worker"].push(ptr)
+//         let maxTime = 0;
+//         let maxIndex = -1;
+//          for(let i = 0; i < valid_morn.length; i++){
+//              let t = mornEndTime - Math.max(currentTime,mornStartTime) - avgTime(valid_morn[i],ptr.facility)
+//              if(t > maxTime){
+//                 maxTime = t
+//                 maxIndex = i
+//              }
+//          }
+//          valid_morn[maxIndex]["worker"].push(ptr)
 
-    //     maxTime = 0;
-    //     maxIndex = -1;
-    //      for(let i = 0; i < valid_morn.length; i++){
-    //          let t = mornEndTime - Math.max(currentTime,mornStartTime) - avgTime(valid_morn[i],ptr.facility)
-    //          if(t > maxTime){
-    //             maxTime = t
-    //             maxIndex = i
-    //          }
-    //      }
-    //      valid_morn[maxIndex]["worker"].push(ptr)
+//         maxTime = 0;
+//         maxIndex = -1;
+//          for(let i = 0; i < valid_morn.length; i++){
+//              let t = mornEndTime - Math.max(currentTime,mornStartTime) - avgTime(valid_morn[i],ptr.facility)
+//              if(t > maxTime){
+//                 maxTime = t
+//                 maxIndex = i
+//              }
+//          }
+//          valid_morn[maxIndex]["worker"].push(ptr)
 
-    // }
+//     }
     
-}
+// }
 
 
 
@@ -182,4 +183,4 @@ module.exports = findValidWorkers
 //     workers[i]
 //     .then((worker) => console.log(worker))
 //     .catch((err) => console.log(err))
-// }
+//}
