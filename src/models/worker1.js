@@ -33,7 +33,13 @@ const workerSchema = new mongoose.Schema({
     available:{
         type:Boolean,
         // required:true
-    }  
+    },
+     order : {
+            type: mongoose.Schema.Types.ObjectId,
+           ref: "WorkOrder"
+    }
+    
+    
 },{timestamps: true})
 const Worker = new mongoose.model('Worker1', workerSchema)
 
