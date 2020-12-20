@@ -4,7 +4,7 @@ const sendMessage = require('../twilio/send_sms')
 
 let date_ob = new Date();
 
-console.log(date_ob.getHours());
+// console.log(date_ob.getHours());
 
 
 const assignedTask = async (order) => {
@@ -102,8 +102,8 @@ const findValidWorkers = async(workOrder) => {
 // findValidWorkers(order)
 // assignedTask(order)
 
-const order = WorkOrder.findById("5f6666865fb0bd66ef68fb2a")
-assignedTask(order)
+// const order = WorkOrder.findById("5f6666865fb0bd66ef68fb2a")
+// assignedTask(order)
 
 
 module.exports = {findValidWorkers, assignedTask}

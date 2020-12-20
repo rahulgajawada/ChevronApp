@@ -34,10 +34,11 @@ router.post('/api/workers', async (req,res) => {
 })
 
 //Worker notifies that the order is complete and it is deleted from his queue
-router.patch('/api/workers/:id',async (req,res) => {
-    const _id = req.params.id
+router.patch('/api/workers',async (req,res) => {
+    const name = req.params.name
+    const phone = req.params.phone
     try{
-        const worker = await Worker.findById({_id})
+        const worker = await Worker.findOne({name, phone})
         if(!worker)
             return res.status(404).send()
         if(worker["order"] != undefined){

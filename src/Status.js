@@ -23,6 +23,8 @@ const useStyles = makeStyles(theme => ({
 export default function App() {
     // State variable for every field
     const [workerID, setID] = useState("");
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
 
     //sets styling
     const classes = useStyles();
@@ -30,6 +32,19 @@ export default function App() {
     //checks if they put in an email and password
     function validateForm() {
         return workerID.length > 0;
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        fetch('http://localhost:4000/api/workers',{
+            method: 'PATCH',
+            headers: {
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify({
+                name: name,  phone: phone
+            })
+        }).then(res => res.json()).then(data => console.log(data)).catch(error => console.log("ERROR"))
     }
 
 
@@ -45,12 +60,24 @@ export default function App() {
                         margin="normal"
                         required
                         fullWidth
-                        id="workerID"
-                        label="Rescue Worker ID"
-                        name="workerID"
+                        id="name"
+                        label="Rescue Worker name"
+                        name="name"
                         autoFocus
                         form className={classes.form}
-                        onChange={e => setID(e.target.value)}
+                        onChange={e => setName(e.target.value)}
+                    />
+                     <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="phone"
+                        label="Rescue Worker phone"
+                        name="phone"
+                        autoFocus
+                        form className={classes.form}
+                        onChange={e => setPhone(e.target.value)}
                     />
                     <Button
                         margin="normal"
@@ -60,7 +87,7 @@ export default function App() {
                         color="primary"
                         disabled={!validateForm()}
                     >
-                        Send
+                       
           </Button>
                 </form>
             </div>

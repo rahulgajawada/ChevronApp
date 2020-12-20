@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, TextField, Box, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from 'axios';
-const Worker = require('../models/worker1')
+const Worker = require('./models/worker1')
 const sendSMS = require('./twilio/send_sms')
 
 const useStyles = makeStyles(theme => ({
@@ -27,6 +27,8 @@ export default function WorkOrder() {
     //sets styling
     const classes = useStyles();
     const [facility, setFacility] = useState("");
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
     const [equipmentType, setType] = useState("");
     const [equipmentID, setID] = useState("");
     const [priority, setPriority] = useState("");
@@ -49,7 +51,7 @@ export default function WorkOrder() {
         }).then(res => res.json()).then(data => data).catch(error => console.log("ERROR"))
         const f = async (data) => {
             const order = await data;
-            const _id = order_id;
+            const _id = order._id;
             const url = 'http://localhost:4000/api/assignOrder/' + _id
             fetch(url).then(response => response.json()).then(data => console.log(data))
             const worker = Worker.findByID({order: _id})
@@ -78,6 +80,28 @@ export default function WorkOrder() {
                         autoFocus
                         form className={classes.form}
                         onChange={e => setFacility(e.target.value)}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="latitude"
+                        label="Latitude"
+                        id="latitude"
+                        form className={classes.form}
+                        onChange={e => setLatitude(e.target.value)}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="longitude"
+                        label="Longitude"
+                        id="longitude"
+                        form className={classes.form}
+                        onChange={e => setLongitude(e.target.value)}
                     />
                     <TextField
                         variant="outlined"
