@@ -55,37 +55,8 @@ const assignedTask = async (order) => {
         }
         
     }
-    // while(q.length != 0){
-    //     let pop = q.shift()
-    //     const {morn, even} = await findValidWorkers(pop)
-    //     let maxTime = 0;
-    //     let maxIndex = 0;
-    //     let currentTime = date_ob.getHours()
-    //     // console.log(currentTime)
-    //      for(let i = 0; i < morn.length; i++){
-    //         //  currentTime = mornStartTime + 1
-    //          let t = mornEndTime - Math.max(currentTime,mornStartTime) - avgTime(morn[i],pop.facility)
-    //          if(t > maxTime){
-    //             maxTime = t
-    //             maxIndex = i
-    //          }
-    //      }
-
-    //      for(let i = 0; i < even.length; i++){
-
-    //      }
-    //     //  console.log(pop._id)
-    //     //  console.log(maxIndex)
-    //      console.log(morn[maxIndex])
-    //      if(morn[maxIndex] != null){
-    //         morn[maxIndex]["queue"].push(pop._id)
-    //         morn[maxIndex].save();
-    //      }
-        // break;
-    
-    // }
-  
 }
+    // while(q.length != 0){
 
 
 
@@ -184,4 +155,4 @@ module.exports = {findValidWorkers, assignedTask}
 //     workers[i]
 //     .then((worker) => console.log(worker))
 //     .catch((err) => console.log(err))
-// }
+//}

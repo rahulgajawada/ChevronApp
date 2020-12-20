@@ -1,17 +1,16 @@
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
+const accountSid = 'AC4c626d658770cf555e22058294ce3e74';
+const authToken = 'a572f575d60f9e7d87c08fbedaff850e';
 const client = require('twilio')(accountSid, authToken);
 
 function sendSMS(task_assignment,recipient){
 client.messages
   .create({
      body: task_assignment,
-     from: '+15017122661',
+     from: '+12517583789',
      to: recipient
    })
   .then(message => console.log(message.sid));
 
 }
-
 
 module.exports = sendSMS;
